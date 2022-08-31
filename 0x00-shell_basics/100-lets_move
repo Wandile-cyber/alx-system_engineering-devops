@@ -1,2 +1,3 @@
 #!/bin/bash
-mv ^[A-Z] /tmp/u
+for FILE in *; do if   [[ $FILE =~ ^[[:upper:]] ]]; mv $FILE /tmp/u
+fi; done;
