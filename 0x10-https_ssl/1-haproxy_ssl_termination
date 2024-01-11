@@ -19,8 +19,8 @@ defaults
 
 frontend th3gr00t-tech-frontend
     bind *:80
-    bind *:443 ssl crt /etc/letsencrypt/live/www.yourdomain.com/fullchain.pem
-    reqadd X-Forwarded-Proto:\ https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.onefuture.tech/onefuture.tech.pem
+    http-request add-header X-Forwarded-Proto https
     redirect scheme https if !{ ssl_fc }
 
 backend th3gr00t-tech-backend
