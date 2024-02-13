@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-""" Exporting csv files"""
-import requests
+"""Module for task 0"""
+
 
 def number_of_subscribers(subreddit):
-    # Set a custom User-Agent to avoid Too Many Requests error
-    headers = {'User-Agent': 'MyBot/1.0'}
-    
-    # Send a GET request to the Reddit API
-    response = requests.get(f'https://www.reddit.com/r/{subreddit}/about.json', headers=headers)
-    
-    # Check if the request was successful
-    if response.status_code == 200:
-        data = response.json()
-        return data['data']['subscribers']
-    else:
+    """Queries the Reddit API and returns the number of subscribers
+    to the subreddit"""
+    import requests
+
+    sub_info = requests.get("https://www.reddit.com/r/{}/about.json"
+                            .format(subreddit),
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if sub_info.status_code >= 300:
         return 0
+
+    return sub_info.json().get("data").get("subscribers")
